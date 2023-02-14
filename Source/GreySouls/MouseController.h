@@ -20,4 +20,13 @@ private:
 	void MoveRight(float Value);
 	void BeginCrouch();
 	void EndCrouch();
+	void LookUp(float Value);
+	void Turn(float Value);
+
+private:
+	UPROPERTY(EditAnywhere)
+	float TurnRate;
+
+	UPROPERTY(EditAnywhere)
+	float LookUpRate;
 };

@@ -13,8 +13,13 @@ void AMouseController::SetupInputComponent()
 		InputComponent->BindAxis("MoveForward", this, &AMouseController::MoveForward);
 		InputComponent->BindAxis("MoveRight", this, &AMouseController::MoveRight);
 
+		InputComponent->BindAxis("Turn", this, &AMouseController::Turn);
+		InputComponent->BindAxis("LookUp", this, &AMouseController::LookUp);
+
 		InputComponent->BindAction("Crouch", IE_Pressed, this, &AMouseController::BeginCrouch);
 		InputComponent->BindAction("Crouch", IE_Released, this, &AMouseController::EndCrouch);
+
+		
 	}
 }
 
@@ -56,6 +61,22 @@ void AMouseController::EndCrouch()
 	if (!MouseCharacter) return;
 
 	MouseCharacter->UnCrouch();
+}
+
+void AMouseController::LookUp(float Value)
+{
+	if(Value != 0.f && GetWorld())
+	{
+		AddPitchInput(Value * LookUpRate * GetWorld()->GetDeltaSeconds());
+	}
+}
+
+void AMouseController::Turn(float Value)
+{
+	if(Value != 0.f && GetWorld())
+	{
+		AddYawInput(Value * TurnRate * GetWorld()->GetDeltaSeconds());
+	}
 }
 
 
