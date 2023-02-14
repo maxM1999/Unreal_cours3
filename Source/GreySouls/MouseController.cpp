@@ -18,8 +18,6 @@ void AMouseController::SetupInputComponent()
 
 		InputComponent->BindAction("Crouch", IE_Pressed, this, &AMouseController::BeginCrouch);
 		InputComponent->BindAction("Crouch", IE_Released, this, &AMouseController::EndCrouch);
-
-		
 	}
 }
 
